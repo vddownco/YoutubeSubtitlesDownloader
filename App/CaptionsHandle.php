@@ -67,6 +67,7 @@ class CaptionsHandle
     public function validVideoID(string $video_id): string
     {
         if ($video_id) {
+            $video_id = substr($video_id, strpos($video_id, "/shorts/")+8); // for shorts
             $video_id = trim($video_id);
             if (strlen($video_id) > 11) {
                 if (preg_match("/youtu\.be/", $video_id)) {

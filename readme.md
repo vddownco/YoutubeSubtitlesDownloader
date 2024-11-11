@@ -44,7 +44,7 @@ If you are using it outside your home network, for example in the cloud, you may
 subtitles, to do this you can do the following. 
 
 - Get YouTube login cookies
-- Place the cookies inside the file `my_yt_cookie_file.txt`
+- Place the cookies inside the file `my_yt_cookie_file.txt` (make sure it is not publicly accessible)
 - Uncomment the line:
 ```php
 //$cookie_file = __DIR__."/my_yt_cookie_file.txt";
