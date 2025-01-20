@@ -64,5 +64,7 @@ Avoid using your main account.
 
 **Download cookies in Netscape format**
 
+Make sure you are only downloading YouTube cookies and not all of your browser cookies.
+
 # That's all
 I hope this code is useful and that you make excellent use of it.
