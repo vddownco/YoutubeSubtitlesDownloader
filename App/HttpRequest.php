@@ -23,7 +23,7 @@ class HttpRequest
     {
         if(is_file($cookie_file_path)){
             curl_setopt($this->ch, CURLOPT_COOKIEFILE, $cookie_file_path);
-            curl_setopt($this->ch, CURLOPT_COOKIEJAR, $cookie_file_path);
+           // curl_setopt($this->ch, CURLOPT_COOKIEJAR, $cookie_file_path);
         }else{
             exit('File path does not exist or is not readable: '.$cookie_file_path);
         }
