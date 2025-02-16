@@ -44,6 +44,7 @@ class CaptionsHandle
         $obj->video_title = $video_title;
 
         preg_match("/{\"captionTracks\":\[{\"baseUrl\":\"(.*?)\"/S", $cnt, $match);
+        $obj->caption_url = '';
         if (!empty($match[1])) {
             $caption_url = trim($match[1]);
             if (preg_match("/^\/api/", $caption_url)) {
