@@ -31,7 +31,7 @@ if(empty($video_url)){
             $captions_content = strip_tags($captions_content);
             $data->caption = $captions_content;
             $data->video_id = $obj->video_id;
-            $data->video_title = $obj->video_title;
+            $data->title = $obj->video_title;
             $data->caption_url = $obj->caption_url;
 
         } else {
