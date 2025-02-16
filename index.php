@@ -21,15 +21,19 @@ if(empty($video_url)){
     // $CaptionHandle->loginWithCookieFile($cookie_file);
     // Uncomment the line above if you need to log in
     try {
-        $caption_url = $CaptionHandle->getSubtitleURL($video_url);
-        if ($caption_url) {
-            $captions_content = $CaptionHandle->httpRequest($caption_url);
+        $obj = $CaptionHandle->getSubtitleURL($video_url);
+        if ($obj->caption_url) {
+            $captions_content = $CaptionHandle->httpRequest($obj->caption_url);
             $captions_content = html_entity_decode($captions_content);
             // Remove XML/HTML from subtitles
             // replacing "<" with " <" is to prevent some words from sticking to another
             $captions_content = str_replace("<", " <", $captions_content);
             $captions_content = strip_tags($captions_content);
             $data->caption = $captions_content;
+            $data->video_id = $obj->video_id;
+            $data->video_title = $obj->video_title;
+            $data->caption_url = $obj->caption_url;
+
         } else {
             $data->error = "Couldn't get the subtitle";
         }

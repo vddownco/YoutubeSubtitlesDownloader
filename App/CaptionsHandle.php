@@ -1,6 +1,8 @@
 <?php
 namespace App;
 use Exception;
+use stdClass;
+
 class CaptionsHandle
 {
     private HttpRequest $HttpRequest;
@@ -22,23 +24,34 @@ class CaptionsHandle
      * Gets the URL of the caption related to the video.
      * This URL will be used to extract the caption.
      * @param string $video_id The video ID or URL for which to obtain the caption URL.
-     * @return string
+     * @return stdClass Returns a stdClass object with video_title, caption_url and video_id
      * @throws Exception HTTP request exception.
      */
-    public function getSubtitleURL(string $video_id): string
+    public function getSubtitleURL(string $video_id): stdClass
     {
+        $obj = new stdClass();
         $video_id = $this->validVideoID($video_id);
+        $obj->video_id = $video_id;
         $video_url = "https://www.youtube.com/watch?v={$video_id}";
         $cnt = $this->httpRequest($video_url);
+        preg_match("/<title>(.*?)<\/title>/", $cnt, $matchTitle);
+        $video_title = '';
+        if(!empty($matchTitle[1])) {
+            $video_title = $matchTitle[1];
+            $video_title = substr($video_title, 0, strrpos($video_title, "- YouTube"));
+            $video_title = trim($video_title);
+        }
+        $obj->video_title = $video_title;
+
         preg_match("/{\"captionTracks\":\[{\"baseUrl\":\"(.*?)\"/S", $cnt, $match);
         if (!empty($match[1])) {
             $caption_url = trim($match[1]);
             if (preg_match("/^\/api/", $caption_url)) {
                 $caption_url = "https://www.youtube.com{$caption_url}";
             }
-            return json_decode('"' . $caption_url . '"');  // important
+            $obj->caption_url = json_decode('"' . $caption_url . '"');  // important
         }
-        return '';
+        return $obj;
     }
 
 
