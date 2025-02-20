@@ -78,28 +78,26 @@ class CaptionsHandle
      * @return string The video ID if valid; otherwise, an empty string ('').
      */
 
-    public function validVideoID(string $video_id): string
+   private function validVideoID(string $video_id): string
     {
         if ($video_id) {
-            $video_id = substr($video_id, strpos($video_id, "/shorts/")+8); // for shorts
+            if(str_contains($video_id, "/shorts/")) {
+                $video_id = substr($video_id, strpos($video_id, "/shorts/") + 8, 11); // for shorts URL
+            }
             $video_id = trim($video_id);
             if (strlen($video_id) > 11) {
                 if (preg_match("/youtu\.be/", $video_id)) {
-                    // https://youtu.be/ID
                     $video_id = substr($video_id, strrpos($video_id, "/") + 1, 11);
                 } else {
                     $video_id = substr($video_id, strpos($video_id, "?v=") + 3, 11);
                 }
             }
-
             if (preg_match("/[^a-z0-9\-_]/i", $video_id) or strlen($video_id) != 11) {
                 $video_id = '';
             }
-
         }
         return $video_id;
     }
-
 
     public function saveCaptionOnDisk($file_path, $caption): false|int
     {
