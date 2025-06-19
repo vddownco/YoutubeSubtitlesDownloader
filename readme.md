@@ -1,4 +1,6 @@
 # YouTube Subtitles Downloader
+## 🚨 Note: This project is no longer working due to changes in YouTube's API/structure. 🚨
+----------------
 Simple PHP implementation to download YouTube subtitles
 # How to Use?
 First, run:
