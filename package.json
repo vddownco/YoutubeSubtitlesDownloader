@@ -4,7 +4,7 @@
   "description": "Simple PHP implementation to download YouTube subtitles",
   "scripts": {
     "build": "echo 'No build step required for PHP project' && mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git",
-    "start": "php -S localhost:8000"
+    "start": "echo 'This is a PHP project. For local development, use: php -S localhost:8000' && echo 'PHP is not available in this environment. Deploy to see the live version.'"
   },
   "keywords": ["youtube", "subtitles", "php"],
   "author": "",
