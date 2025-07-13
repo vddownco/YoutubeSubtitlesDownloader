@@ -1,0 +1,12 @@
+{
+  "name": "youtube-subtitles-downloader",
+  "version": "1.0.0",
+  "description": "Simple PHP implementation to download YouTube subtitles",
+  "scripts": {
+    "build": "echo 'No build step required for PHP project' && mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git",
+    "start": "php -S localhost:8000"
+  },
+  "keywords": ["youtube", "subtitles", "php"],
+  "author": "",
+  "license": "MIT"
+}
